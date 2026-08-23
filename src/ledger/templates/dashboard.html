@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="summary">
+  <div class="stat">
+    <p class="stat-label">Net total, all time</p>
+    <p class="stat-value {{ 'negative' if net_total_cents < 0 else 'positive' }}">
+      {{ net_total_cents | money }}
+    </p>
+  </div>
+  <div class="stat">
+    <p class="stat-label">Transactions recorded</p>
+    <p class="stat-value">{{ transaction_count }}</p>
+  </div>
+</section>
+
+<section>
+  <h2>Latest activity</h2>
+  {% if recent %}
+  <table class="ledger">
+    <thead>
+      <tr><th>Date</th><th>Description</th><th>Category</th><th class="num">Amount</th></tr>
+    </thead>
+    <tbody>
+      {% for t in recent %}
+      <tr>
+        <td class="date">{{ t.occurred_on }}</td>
+        <td>{{ t.description }}</td>
+        <td>{{ t.category_name or "—" }}</td>
+        <td class="num {{ 'negative' if t.amount_cents < 0 else 'positive' }}">
+          {{ t.amount_cents | money }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p><a class="more" href="/transactions">All transactions →</a></p>
+  {% else %}
+  <p class="empty">Nothing recorded yet. Run <code>make seed</code> for sample data, or
+     <a href="/transactions">add a transaction</a>.</p>
+  {% endif %}
+</section>
+{% endblock %}

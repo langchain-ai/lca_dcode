@@ -1,0 +1,19 @@
+{
+  "_comment": "Copy to .mcp.json (git-ignored) during the MCP lesson, then restart dcode. Project-level servers prompt for trust on first run.",
+  "mcpServers": {
+    "ledger-db": {
+      "command": "uvx",
+      "args": ["mcp-server-sqlite", "--db-path", "./ledger.db"],
+      "allowedTools": ["read_query", "list_tables", "describe_table"]
+    },
+    "docs-langchain": {
+      "type": "http",
+      "url": "https://docs.langchain.com/mcp"
+    },
+    "playwright": {
+      "_note": "Optional, for the final exercise. Needs Node and will download a browser on first run.",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    }
+  }
+}

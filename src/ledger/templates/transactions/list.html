@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<section>
+  <h1>Transactions</h1>
+
+  <form class="entry" method="post" action="/transactions">
+    <div class="field">
+      <label for="occurred_on">Date</label>
+      <input type="date" id="occurred_on" name="occurred_on" required>
+    </div>
+    <div class="field grow">
+      <label for="description">Description</label>
+      <input type="text" id="description" name="description" placeholder="Coffee" required>
+    </div>
+    <div class="field">
+      <label for="amount">Amount</label>
+      <input type="text" id="amount" name="amount" placeholder="-4.35" required>
+    </div>
+    <button type="submit">Add</button>
+  </form>
+  <p class="hint">Negative for money out, positive for money in. There's no category
+     picker because there's no way to manage categories yet.</p>
+
+  {% if transactions %}
+  <table class="ledger">
+    <thead>
+      <tr>
+        <th>Date</th><th>Description</th><th>Category</th>
+        <th class="num">Amount</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in transactions %}
+      <tr>
+        <td class="date">{{ t.occurred_on }}</td>
+        <td>
+          {{ t.description }}
+          {% if t.note %}<span class="note">{{ t.note }}</span>{% endif %}
+        </td>
+        <td>{{ t.category_name or "—" }}</td>
+        <td class="num {{ 'negative' if t.amount_cents < 0 else 'positive' }}">
+          {{ t.amount_cents | money }}
+        </td>
+        <td class="row-action">
+          <form method="post" action="/transactions/{{ t.id }}/delete">
+            <button type="submit" class="link-button">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="empty">No transactions yet. Add one above, or run <code>make seed</code>.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · Ledger</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/app.css') }}">
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="/">Ledger</a>
+    <nav>
+      <a href="/" {% if title == 'Dashboard' %}aria-current="page"{% endif %}>Dashboard</a>
+      <a href="/transactions" {% if title == 'Transactions' %}aria-current="page"{% endif %}>Transactions</a>
+      <a href="/categories" {% if title == 'Categories' %}aria-current="page"{% endif %}>Categories</a>
+      <a href="/reports" {% if title == 'Reports' %}aria-current="page"{% endif %}>Reports</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <span>Ledger 0.1.0 — a deliberately unfinished app.</span>
+    <a href="/docs">API docs</a>
+  </footer>
+</body>
+</html>

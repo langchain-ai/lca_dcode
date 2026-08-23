@@ -1,0 +1,163 @@
+/* Ledger — intentionally plain. System fonts, three greys, no identity.
+   Lesson 4 replaces this wholesale with a real design system. */
+
+:root {
+  --paper: #fcfcfd;
+  --ink: #14181d;
+  --muted: #6b7681;
+  --rule: #e3e6ea;
+  --in: #1b6b4a;
+  --out: #b03a2b;
+  --sans: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 15px/1.55 var(--sans);
+}
+
+main { max-width: 60rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+
+h1 { font-size: 1.45rem; font-weight: 620; letter-spacing: -0.01em; margin: 0 0 1.25rem; }
+h2 { font-size: 1rem; font-weight: 620; margin: 2rem 0 0.75rem; }
+
+a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+code {
+  font: 0.85em var(--mono);
+  background: #f1f3f5;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+/* Masthead ---------------------------------------------------------------- */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: baseline;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.wordmark {
+  font-weight: 660;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.masthead nav { display: flex; gap: 1.25rem; font-size: 0.9rem; }
+.masthead nav a { color: var(--muted); text-decoration: none; }
+.masthead nav a:hover { color: var(--ink); }
+.masthead nav a[aria-current="page"] { color: var(--ink); font-weight: 560; }
+
+footer {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* Numbers ----------------------------------------------------------------- */
+
+.num, .date { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.num { text-align: right; white-space: nowrap; }
+.positive { color: var(--in); }
+.negative { color: var(--out); }
+
+/* Summary ----------------------------------------------------------------- */
+
+.summary { display: flex; flex-wrap: wrap; gap: 3rem; margin-bottom: 1rem; }
+.stat-label { margin: 0; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.stat-value { margin: 0.25rem 0 0; font: 600 1.9rem/1.1 var(--mono); font-variant-numeric: tabular-nums; }
+
+/* Table ------------------------------------------------------------------- */
+
+.ledger { width: 100%; border-collapse: collapse; }
+.ledger th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 560;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--ink);
+}
+.ledger th.num { text-align: right; }
+.ledger td { padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+.ledger tr:hover td { background: #f7f8f9; }
+.note { display: block; color: var(--muted); font-size: 0.82rem; }
+.row-action { width: 1%; }
+
+/* Forms ------------------------------------------------------------------- */
+
+.entry {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-end;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+}
+.field { display: flex; flex-direction: column; gap: 0.3rem; }
+.field.grow { flex: 1 1 14rem; }
+label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+input {
+  font: inherit;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--paper);
+  color: inherit;
+}
+input:focus { border-color: var(--ink); }
+
+button {
+  font: 560 0.9rem var(--sans);
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+}
+button:hover { background: #000; }
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  padding: 0;
+  font-size: 0.82rem;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+}
+.link-button:hover { background: none; color: var(--out); }
+
+/* Odds and ends ----------------------------------------------------------- */
+
+.hint, .empty { color: var(--muted); font-size: 0.87rem; }
+.hint { margin: 0.6rem 0 1.5rem; }
+.empty { padding: 2rem 0; }
+.gap { max-width: 34rem; }
+.eyebrow { margin: 0; color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.lede { font-size: 1.05rem; }
+.more { font-size: 0.9rem; }
