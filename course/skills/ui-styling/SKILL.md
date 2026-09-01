@@ -1,11 +1,6 @@
 ---
 name: ui-styling
-description: Apply the Ledger design system to any user interface in the app —
-  restyling pages, building new pages, tables, forms, buttons, badges, empty
-  states, or status indicators. Contains the complete visual specification:
-  colour tokens, typography, spacing, component specs, and accessibility rules.
-  Use for any task that changes something a person looks at, including the
-  final step of a mostly-backend feature. Not for pure API or data-layer work.
+description: "Apply the Ledger design system to any user interface in the app — restyling pages, building new pages, tables, forms, buttons, badges, empty states, or status indicators. Contains the complete visual specification of colour tokens, typography, spacing, component specs, and accessibility rules. Use for any task that changes something a person looks at, including the final step of a mostly-backend feature. Not for pure API or data-layer work."
 ---
 
 # The Ledger design system
